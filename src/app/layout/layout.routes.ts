@@ -12,5 +12,6 @@ export const layoutRoutes: Routes = [
             {path: '', component: HomeComponent},
             {path: 'marvelList', component: MarvelListComponent}
         ]
+        
     }
 ];
