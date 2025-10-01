@@ -1,0 +1,31 @@
+<div class="detail" *ngIf="character() as c; else loadingTpl">
+    <a routerLink="/characters" class="back">← Volver</a>
+    <div class="card">
+        <img [src]="bigImg(c)" [alt]="c.name" />
+        <div class="info">
+        <h1>{{ c.name }}</h1>
+
+        <p class="desc" *ngIf="c.description; else noDesc">{{ c.description }}</p>
+        <ng-template #noDesc>
+            <p class="muted">Sin descripción oficial.</p>
+        </ng-template>
+
+        <div class="links" *ngIf="c.urls?.length">
+            <h3>Enlaces</h3>
+            <ul>
+            <li *ngFor="let u of (c.urls || [])">
+                <a [href]="u.url" target="_blank" rel="noopener noreferrer">{{ u.type }}</a>
+            </li>
+            </ul>
+        </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #loadingTpl>
+  <div class="loading" *ngIf="loading(); else notFound">Cargando personaje…</div>
+</ng-template>
+
+<ng-template #notFound>
+    <div class="loading">No se encontró el personaje.</div>
+</ng-template>

@@ -1,0 +1,50 @@
+<section class="wrapper">
+    <header class="topbar">
+        <h2>Comics</h2>
+
+        <form (submit)="$event.preventDefault(); onSearch();" class="search">
+        <input
+            [ngModel]="q()"
+            (ngModelChange)="q.set($event)"
+            name="q"
+            type="text"
+            placeholder="Buscar comic (ej: amazing, avengers)"
+        />
+        <button type="submit">Buscar</button>
+        </form>
+
+        <div class="meta">
+        <span *ngIf="!loading()">Total: {{ total() | number }}</span>
+        <label>
+            Por página:
+            <select
+            [ngModel]="pageSize()"
+            (ngModelChange)="pageSize.set($event); page.set(1); fetch();">
+            <option [ngValue]="12">12</option>
+            <option [ngValue]="20">20</option>
+            <option [ngValue]="40">40</option>
+            </select>
+        </label>
+        </div>
+    </header>
+
+    <div class="grid" *ngIf="!loading(); else loadingTpl">
+        <article class="card" *ngFor="let c of items(); trackBy: trackById">
+        <img [src]="thumbUrl(c)" [alt]="c.title" loading="lazy" />
+        <h3>{{ c.title }}</h3>
+        </article>
+    </div>
+
+    <ng-template #loadingTpl>
+        <div class="loading">Cargando…</div>
+    </ng-template>
+
+    <nav class="paginator" *ngIf="pages() > 1">
+        <button (click)="prevPage()" [disabled]="page()===1">« Anterior</button>
+        <button class="page"
+                *ngFor="let p of [].constructor(pages()); let i = index"
+                [class.active]="(i+1)===page()"
+                (click)="setPage(i+1)">{{ i+1 }}</button>
+        <button (click)="nextPage()" [disabled]="page()===pages()">Siguiente »</button>
+    </nav>
+</section>

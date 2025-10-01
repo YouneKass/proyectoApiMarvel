@@ -1,0 +1,27 @@
+.app-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid #222;
+}
+
+.tabs {
+    display: flex;
+    gap: 1rem;
+    margin-left: auto;
+}
+
+.tabs a {
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    border: 1px solid #333;
+    text-decoration: none;
+    color: #fff;
+    background: #191919;
+}
+
+.tabs a.active {
+    background: #e62429;
+    border-color: #e62429;
+}

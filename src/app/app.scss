@@ -1,0 +1,5 @@
+.app-header{display:flex;align-items:center;gap:1rem;padding:1rem;border-bottom:1px solid #222}
+.logo{margin:0;font-size:1.25rem}
+.tabs{display:flex;gap:.75rem}
+.tabs a{padding:.5rem .8rem;border-radius:999px;border:1px solid #333;text-decoration:none;color:#fff;background:#191919}
+.tabs a.active{background:#e62429;border-color:#e62429}
